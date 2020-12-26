@@ -3,7 +3,9 @@ Travel Agency:
 Site user can register and login to the applicaiton.
 Once logged in, he can share a status to public or private selecting a location (Using dropdown).
 Status can be public or private.
-Public status will be visible to all other users within the selected location. However
+Public status will be visible to all other users within the selected location. However, private status will be visible to only the user who posted.
+Owner of a shared status can edit it if he or she wishes.
+
 Setup Process:
 The application is a Maven project. Therefore, Maven must have to present in the dev environment.
 The application is developed with Eclipse. Therefore, it is preferred to use eclipse for importing easily.
@@ -35,5 +37,6 @@ Completed points:
 5. view all status
 6. timeline view
 7. update user profile
+8.privacy-wise status show
 could not perform :
-privacy-wise status show
+form validation
