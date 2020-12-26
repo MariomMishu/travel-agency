@@ -26,5 +26,14 @@ Technology:
 
 Username: admin,
 Password: secret
-Completed checkpoints:
-Register and login
+
+Completed points:
+1.Register       
+2.login
+3. add , edit location
+4. add, edit status
+5. view all status
+6. timeline view
+7. update user profile
+could not perform :
+privacy-wise status show
