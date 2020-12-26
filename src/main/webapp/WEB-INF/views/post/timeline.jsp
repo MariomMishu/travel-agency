@@ -23,10 +23,7 @@
 				<div
 					class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<div class="row"><i class="fas fa-user"></i>
-					<%-- <img alt="${post.userId.fullName}"
-									style="width: 30px; height: 30px; display: block;"
-									class="img-profile rounded-circle"
-									src="${pageContext.request.contextPath }${user.profilePic}"> --%>
+					
 					<h6 class="m-0 font-weight-bold text-primary">${ post.userId.fullName }
 						Posted
 					</h6>
@@ -38,6 +35,10 @@
 					<div class="row"><i class="fas fa-edit"></i> ${ post.status }</div>
 					<div class="row"> <i class="fa fa-map-marker" aria-hidden="true"></i>  ${ post.getLocation().getLocationName()}
 </div>
+					<div>   
+						<br> <b> <a  href="${pageContext.request.contextPath}/post/edit?id=${post.id}">Edit</a> </b>
+							
+					</div>
 									</div>
 			</c:forEach>
 

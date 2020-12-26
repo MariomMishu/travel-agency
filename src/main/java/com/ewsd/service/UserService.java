@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
   		userEntity.setActiveStatus(true);
   		userEntity.setIsExpired(true);
   		userEntity.setIsLocked(true);
-  		userEntity.setRole(Role.ROLE_STUDENT);
+  		userEntity.setRole(Role.ROLE_USER);
   		userEntity.setEntryDate(entry_date);
   		userRepository.save(userEntity);
   	}

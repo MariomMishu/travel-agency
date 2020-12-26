@@ -66,36 +66,33 @@ public class RootController {
 			user.setPassword(passwordEncoder.encode("secret"));
 			user.setRole(Role.ROLE_ADMIN);
 			user.setEmail("admin@gmail.com");
-			user.setFullName("QA Admin");
-			user.setDept("Admin");
+			user.setFullName("Admin");
 			user.setEntryDate(e_date);
 			user.setActiveStatus(true);
 			user.setIsExpired(true);
 			user.setIsLocked(true);
 			userRepository.save(user);
 		}
-		if (userRepository.findByUsername("qa_manager").isEmpty()) {
+		if (userRepository.findByUsername("admin1").isEmpty()) {
 			var user = new User();
-			user.setUsername("qa_manager");
+			user.setUsername("admin1");
 			user.setPassword(passwordEncoder.encode("secret"));
-			user.setRole(Role.ROLE_QAMANAGER);
+			user.setRole(Role.ROLE_ADMIN);
 			user.setEmail("manager@gmail.com");
-			user.setFullName("QA Manager");
-			user.setDept("QA");
+			user.setFullName("admin1");
 			user.setEntryDate(e_date);
 			user.setActiveStatus(true);
 			user.setIsExpired(true);
 			user.setIsLocked(true);
 			userRepository.save(user);
 		}
-		if (userRepository.findByUsername("qa_coordinator").isEmpty()) {
+		if (userRepository.findByUsername("user1").isEmpty()) {
 			var user = new User();
-			user.setUsername("qa_coordinator");
+			user.setUsername("user1");
 			user.setPassword(passwordEncoder.encode("secret"));
-			user.setRole(Role.ROLE_QACOORDINATOR);
-			user.setEmail("coordinator@gmail.com");
-			user.setFullName("QA Coordinator");
-			user.setDept("CSE");
+			user.setRole(Role.ROLE_USER);
+			user.setEmail("user1@gmail.com");
+			user.setFullName("User1");
 			user.setEntryDate(e_date);
 			user.setActiveStatus(true);
 			user.setIsExpired(true);
@@ -103,14 +100,13 @@ public class RootController {
 			userRepository.save(user);
 		}
 
-		if (userRepository.findByUsername("student").isEmpty()) {
+		if (userRepository.findByUsername("user2").isEmpty()) {
 			var user = new User();
-			user.setUsername("student");
+			user.setUsername("user2");
 			user.setPassword(passwordEncoder.encode("secret"));
-			user.setRole(Role.ROLE_STUDENT);
-			user.setEmail("student@gmail.com");
-			user.setFullName("QA Student");
-			user.setDept("CSE");
+			user.setRole(Role.ROLE_USER);
+			user.setEmail("user2@gmail.com");
+			user.setFullName("User2");
 			user.setEntryDate(e_date);
 			user.setActiveStatus(true);
 			user.setIsExpired(true);

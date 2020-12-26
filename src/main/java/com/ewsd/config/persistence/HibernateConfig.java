@@ -3,12 +3,14 @@ package com.ewsd.config.persistence;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Modifier;
+import java.util.List;
 import java.util.Properties;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -24,9 +26,10 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 
+
 @EnableJpaRepositories("com.ewsd.repositories")
 @org.springframework.context.annotation.Configuration
-public class HibernateConfig {
+public class HibernateConfig <T>{
 	
 	@Autowired
 	private Environment environment;
@@ -109,5 +112,12 @@ public class HibernateConfig {
                 = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
+    }
+	protected List<T> getListFromQuery (CriteriaQuery<T> cq) {
+    	session = this.getSession();
+    	var query = this.getSession().getEntityManagerFactory().createEntityManager().createQuery(cq);
+    	List<T> list = query.getResultList();
+    	session.close();
+    	return list;
     }
 }

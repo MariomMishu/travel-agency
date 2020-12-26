@@ -22,7 +22,7 @@
 			<div class="text-center">
 				<h5>Edit Location</h5>
 
-				<form:form class="user form-horizontal" modelAttribute="locationRm" action="${pageContext.request.contextPath }/batch/edit" method="POST">
+				<form:form class="user form-horizontal" modelAttribute="locationRm" action="${pageContext.request.contextPath }/location/edit" method="POST">
 					<div class="form-group row">
 						<label align="left" class="col-sm-3">Location Name</label>
 						<div class="col-sm-9"><form:input path="id" value="${location.id}" hidden="hidden"/>
@@ -47,10 +47,3 @@
 <jsp:include page="../common/footer.jsp" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-	$( function() {
-		$( ".datepicker" ).datepicker({
-			dateFormat : "dd/mm/yy"
-		});
-	} );
-</script>

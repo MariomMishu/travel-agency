@@ -129,13 +129,7 @@
 							} ]
 				});
 
-		function showTermsAndConditions() {
-			$('#myModal').modal({
-				backdrop : 'static',
-				keyboard : false
-			});
-			$(".modal-body").load("/terms-and-conditions");
-		}
+		
 	</script>
 
 

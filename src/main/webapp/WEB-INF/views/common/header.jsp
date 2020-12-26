@@ -56,7 +56,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="${pageContext.request.contextPath }/post/view_all_posts"">
+        <a class="nav-link" href="${pageContext.request.contextPath }/post/view_all_posts">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -89,7 +89,7 @@
         Post
       </div>
        <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath }/post/show-all">
+        <a class="nav-link" href="${pageContext.request.contextPath }/post/view_all_posts">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>All Posts</span></a>
       </li>
@@ -99,7 +99,7 @@
           <span>Add New Post</span></a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="${pageContext.request.contextPath }/post/timeline">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Timeline</span></a>
       </li>

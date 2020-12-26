@@ -36,13 +36,9 @@
                         <td>${ location.locationName }</td>
                         <td>
                          <sec:authorize access="hasAnyRole('ADMIN')">
-                        <a  href="${pageContext.request.contextPath}/location/edit?id=${location.id}">Edit</a>
-                    </sec:authorize>||
-
-                        <sec:authorize access="hasAnyRole('ADMIN')">
-                        <a  href="${pageContext.request.contextPath}/location/delete?id=${location.id}">Delete</a>   </sec:authorize>
-</td>
-                 
+                        	<a  href="${pageContext.request.contextPath}/location/edit?id=${location.id}">Edit</a>
+                    	</sec:authorize>
+						</td>
                     </tr>
                 </c:forEach>
 

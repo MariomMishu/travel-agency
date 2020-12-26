@@ -1,10 +1,7 @@
 package com.ewsd.request_models;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import com.ewsd.model.Attachment;
 import com.ewsd.model.User;
 
 public class PostRm  implements Serializable {
@@ -18,7 +15,6 @@ public class PostRm  implements Serializable {
 	
 	private String locationName;
     private String visibility;
-	private Set<Attachment> attachments = new HashSet<>();
 	
 	private Boolean isDelete;
 	
@@ -64,14 +60,6 @@ public class PostRm  implements Serializable {
 		this.locationName = locationName;
 	}
 
-	public Set<Attachment> getAttachments() {
-		return attachments;
-	}
-
-	public void setAttachments(Set<Attachment> attachments) {
-		this.attachments = attachments;
-	}
-
 	public Boolean getIsDelete() {
 		return isDelete;
 	}
@@ -97,7 +85,7 @@ public class PostRm  implements Serializable {
 	}
 
 	public PostRm(Long id, String title, String status, Long locationId, String locationName, String visibility,
-			Set<Attachment> attachments, Boolean isDelete, User userId) {
+			 Boolean isDelete, User userId) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -105,7 +93,6 @@ public class PostRm  implements Serializable {
 		this.locationId = locationId;
 		this.locationName = locationName;
 		this.visibility = visibility;
-		this.attachments = attachments;
 		this.isDelete = isDelete;
 		this.userId = userId;
 	}
@@ -117,7 +104,7 @@ public class PostRm  implements Serializable {
 	@Override
 	public String toString() {
 		return "PostRm [id=" + id + ", title=" + title + ", status=" + status + ", locationId=" + locationId
-				+ ", locationName=" + locationName + ", visibility=" + visibility + ", attachments=" + attachments
+				+ ", locationName=" + locationName + ", visibility=" + visibility
 				+ ", isDelete=" + isDelete + ", userId=" + userId + "]";
 	}
 

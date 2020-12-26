@@ -2,7 +2,6 @@ package com.ewsd.dto;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import com.ewsd.model.Attachment;
 import com.ewsd.model.Location;
 import com.ewsd.model.User;
 
@@ -17,8 +16,6 @@ public class PostDto  implements Serializable {
 
 	private Boolean isDelete;
 
-	private Set<Attachment> attachments = new HashSet<>();
-	
     private String visibility;
 	private User userId;
 
@@ -62,13 +59,7 @@ public class PostDto  implements Serializable {
 		this.isDelete = isDelete;
 	}
 
-	public Set<Attachment> getAttachments() {
-		return attachments;
-	}
-
-	public void setAttachments(Set<Attachment> attachments) {
-		this.attachments = attachments;
-	}
+	
 
 	public User getUserId() {
 		return userId;
@@ -90,14 +81,14 @@ public class PostDto  implements Serializable {
 	
 
 	public PostDto(Long id, String title, String status, Location location, Boolean isDelete,
-			Set<Attachment> attachments, String visibility, User userId) {
+			 String visibility, User userId) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.status = status;
 		this.location = location;
 		this.isDelete = isDelete;
-		this.attachments = attachments;
+	
 		this.visibility = visibility;
 		this.userId = userId;
 	}
@@ -105,7 +96,7 @@ public class PostDto  implements Serializable {
 	@Override
 	public String toString() {
 		return "PostDto [id=" + id + ", title=" + title + ", status=" + status + ", location=" + location
-				+ ", isDelete=" + isDelete + ", attachments=" + attachments + ", visibility=" + visibility + ", userId="
+				+ ", isDelete=" + isDelete + ", visibility=" + visibility + ", userId="
 				+ userId + "]";
 	}
 

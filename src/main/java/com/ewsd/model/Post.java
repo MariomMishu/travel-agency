@@ -31,9 +31,7 @@ public class Post {
     private String title;
     @ManyToOne
 	private Location location;
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "attachments")
-    private List<Attachment> attachments;
+    
     @Column
     private String visibility;
     @Column(name = "is_delete")
@@ -69,12 +67,6 @@ public class Post {
 	}
 	
 
-	public List<Attachment> getAttachments() {
-		return attachments;
-	}
-	public void setAttachments(List<Attachment> attachments) {
-		this.attachments = attachments;
-	}
 	public String getVisibility() {
 		return visibility;
 	}
@@ -116,14 +108,14 @@ public class Post {
 		super();
 	}
 	public Post(Long id, String status, String title, User owner, List<String> locations, Location location,
-			List<Attachment> attachments, String visibility, Boolean isDelete, User userId, LocalDateTime entryDate,
+			 String visibility, Boolean isDelete, User userId, LocalDateTime entryDate,
 			LocalDateTime updateDate) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.title = title;
 		this.location = location;
-		this.attachments = attachments;
+		
 		this.visibility = visibility;
 		this.isDelete = isDelete;
 		this.userId = userId;
@@ -132,7 +124,7 @@ public class Post {
 	}
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", status=" + status + ", title=" + title + ", location=" + location + ", attachments=" + attachments + ", visibility=" + visibility
+		return "Post [id=" + id + ", status=" + status + ", title=" + title + ", location=" + location + ",visibility=" + visibility
 				+ ", isDelete=" + isDelete + ", userId=" + userId + ", entryDate=" + entryDate + ", updateDate="
 				+ updateDate + "]";
 	}

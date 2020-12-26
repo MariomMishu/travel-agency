@@ -17,7 +17,7 @@ import com.ewsd.model.Location;
 import com.ewsd.repositories.LocationRepository;
 
 @Service
-public class LocationService {
+public class LocationService extends HibernateConfig<Location>{
 	@Autowired
     private LocationRepository locationRepository;
     private HibernateConfig hibernateConfig;
@@ -60,31 +60,21 @@ public class LocationService {
 		return (List<Location>) locationRepository.findAll();
 	}
 
-
 	public Location getById(long locationId) {
-		var session = hibernateConfig.getSession();
-		var transaction = session.getTransaction();
-		if (!transaction.isActive()) {
-			transaction = session.beginTransaction();
-		}
-		System.out.println(locationId);
-		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		CriteriaQuery<Location> criteriaQuery = criteriaBuilder.createQuery(Location.class);
-		Root<Location> root = criteriaQuery.from(Location.class);
-		criteriaQuery.select(root);
-		criteriaQuery.where(
-				criteriaBuilder.and(
-						criteriaBuilder.equal(root.get("id"), locationId),
-						criteriaBuilder.isTrue(root.get("isDelete"))
-				)
-		);
-		var query = session.getEntityManagerFactory().createEntityManager().createQuery(criteriaQuery);
-		var location_list = query.getResultList();
-		System.out.println("Location");
-		System.out.println(location_list);
-		return Optional.ofNullable(location_list.get(0))
-				.orElseThrow(() -> new ResourceNotFoundException("No Location was found with this ID!"));
+
+		CriteriaBuilder cb = getCriteriaBuilder();
+		CriteriaQuery<Location> cq = cb.createQuery(Location.class);
+		Root<Location> root = cq.from(Location.class);
+		cq.where(cb.equal(root.get("id"), locationId));
+		
+		// perform query
+		var ac_list = getListFromQuery(cq);
+
+		return Optional.ofNullable(ac_list.get(0))
+				.orElseThrow(() -> new ResourceNotFoundException("Location Not Found With Thid Id"));
 	}
+
+	
 	public boolean delete(Location location) {
 		// TODO Auto-generated method stub
 		locationRepository.delete(location);

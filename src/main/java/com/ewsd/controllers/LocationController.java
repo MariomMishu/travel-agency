@@ -1,6 +1,8 @@
 package com.ewsd.controllers;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ewsd.dto.LocationDto;
+import com.ewsd.enums.Visibility;
 import com.ewsd.model.Location;
+import com.ewsd.model.Post;
 import com.ewsd.request_models.LocationRm;
+import com.ewsd.request_models.PostRm;
 import com.ewsd.service.LocationService;
 import com.ewsd.service.UserService;
 import com.ewsd.util.Util;
@@ -74,4 +80,44 @@ public class LocationController {
 		model.addAttribute("message", "Showing All location");
 		return "location/show-all";
 	}
+	  @GetMapping("/location/edit")
+			public String edit_GET(Model model, @RequestParam("id") long id, Authentication authentication) {
+				var userName = authentication.getName();
+				org.springframework.security.core.userdetails.User authenticateduser = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+						.getContext().getAuthentication().getPrincipal();
+				com.ewsd.model.User user = userService.getUserByName(authenticateduser.getUsername());
+				model.addAttribute("user", user);
+				model.addAttribute("username", userName);
+
+				var locationDto = locationService.getById(id);
+			
+			  var locationRm = new LocationRm(); 
+			  BeanUtils.copyProperties(locationDto, locationRm);
+			
+			  locationRm.setLocationName(locationDto.getLocationName());
+			  
+				model.addAttribute("locationRm", locationRm);
+				//model.addAttribute("location_list", locationService.getAll());
+				return "location/edit";
+			}
+		  @PostMapping("/location/edit")
+			public String edit(Model model, @ModelAttribute("locationRm") LocationRm locationRm, Authentication authentication) {
+				LocalDateTime update_date = LocalDateTime.now();
+				 org.springframework.security.core.userdetails.User authenticateduser  = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				 com.ewsd.model.User user = userService.getUserByName(authenticateduser.getUsername());
+				
+				Location locationEntity = new Location();
+				var locationDto = locationService.getById(locationRm.getId());
+				locationDto.setLocationName(locationRm.getLocationName());
+				BeanUtils.copyProperties(locationDto, locationEntity);
+			
+				
+				locationEntity.setEntryDate(locationDto.getEntryDate());
+				locationEntity.setUpdateDate(update_date);
+				locationEntity.setIsDelete(true);
+				
+				locationService.edit(locationEntity);
+				model.addAttribute("message", "Post Edited Successfully");
+				return "redirect:/location/show-all";
+			}
 }
