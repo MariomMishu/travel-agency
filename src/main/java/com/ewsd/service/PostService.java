@@ -67,29 +67,13 @@ public class PostService{
 
 	public List<Post> getAll() {
 		return (List<Post>) postRepository.findAll();
+		//return (List<Post>) postRepository.findAllByVisibility(visibility);
 	}
-	
-	  public List<PostDto> getAll(String visibility) {
+	public List<Post> getAllWithVisibility() {
+		String visibility ="Public";
+		return (List<Post>) postRepository.findAllByVisibility(visibility);
+	}
 	  
-	  var session = hibernateConfig.getSession();
-	  var transaction = session.getTransaction();
-	  
-	  if (!transaction.isActive()){ 
-		  transaction = session.beginTransaction(); 
-		  }
-	  
-	  CriteriaBuilder cb = session.getCriteriaBuilder(); 
-	  CriteriaQuery<Post> postCQ = cb.createQuery(Post.class); 
-	  Root<Post> root = postCQ.from(Post.class);
-	  //postCQ.where(cb.equal(root.get("visibility"), visibility));
-	  postCQ.select(root); 
-	  var query = session.createQuery(postCQ);
-	  
-	  List<PostDto> resultList = new ArrayList<>();
-	  
-	//  System.out.println(resultList);
-	  return resultList; 
-	  }
 	  public List<PostDto> getAllPostDtoWithUserId(long userId) {
 		  
 		  var session = hibernateConfig.getSession();

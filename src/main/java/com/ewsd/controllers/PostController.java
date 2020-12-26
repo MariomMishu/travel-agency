@@ -125,7 +125,7 @@ public class PostController {
 		com.ewsd.model.User user = userService.getUserByName(authenticateduser.getUsername());
 		  
 	        String dateTimeString = "";
-	        for (Post postEntity : postService.getAll()) {
+	        for (Post postEntity : postService.getAllWithVisibility()) {
 			  dateTimeString = convertTimestampToString(postEntity.getEntryDate(), "d/MM/YYYY hh:mm:ss aaa");
             String time = dateTimeString.split(" ")[1] + " " + dateTimeString.split(" ")[2];
 
@@ -135,7 +135,7 @@ public class PostController {
 	    model.addAttribute("user", user);
 		model.addAttribute("username", userName);
 		//model.addAttribute("post_list", allPost);
-		model.addAttribute("post_list", postService.getAll());
+		model.addAttribute("post_list", postService.getAllWithVisibility());
 		model.addAttribute("message", "Showing All Posts");
 		return "post/view_all_posts";
 	}
