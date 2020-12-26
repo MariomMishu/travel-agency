@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>QA Board - Register</title>
+<title>Travel Agency - Register</title>
 
 <!-- Custom fonts for this template-->
 <link

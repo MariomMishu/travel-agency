@@ -13,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>QA Board - Login</title>
+  <title>Travel Agency - Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath }/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +41,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome @QA Board!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Welcome To Our Travel Agency!</h1>
                   </div>
                   <form class="user" action="${pageContext.request.contextPath }/login-processing"
                   method="POST">
